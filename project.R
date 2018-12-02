@@ -58,5 +58,11 @@ output <- data_ohe[,9]
 ##############################
 
 set.seed(28)
-y~ polym(longitude, latitude, housing_median_age, total_rooms, total_bedrooms, population, households, median_income, degree=7, raw=TRUE) 
+#y= polym(longitude, latitude, housing_median_age, total_rooms, total_bedrooms, population, households, median_income, degree=3, raw=TRUE) 
+#prediction = predict(y)
+
+
+test1=lm(median_house_value ~ poly(longitude,2,raw=TRUE)+poly(latitude,2,raw=TRUE)+poly(housing_median_age,2,raw=TRUE)+ poly(total_rooms,2,raw=TRUE)+ poly(total_bedrooms,2,raw=TRUE)+ poly(population,2,raw=TRUE)+ poly(households,2,raw=TRUE)+ poly(median_income,2,raw=TRUE), data = data_ohe)
+pred = predict(test1)
+accuracy=(median_house_value-pred)/median_house_value *100
 
